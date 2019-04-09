@@ -1,5 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
+import csv
+import pandas as pd
+import lxml
+import html5lib
 
 headers = {
 "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,\
@@ -13,6 +17,8 @@ headers = {
 "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/5\
 37.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"
 }
-page = requests.get('https://electocracia.com/', headers=headers)
+page = requests.get('https://electocracia.com/', 'lxml', headers=headers)
 soup = BeautifulSoup(page.content)
-print(soup.prettify())
+table = str(soup.findAll('table', attrs={ "id" : "tablepress-2"}))
+df = pd.read_html(table)
+df[0].to_csv('polls.csv')
