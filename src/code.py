@@ -29,7 +29,7 @@ rp.read()
 can = rp.can_fetch("*", url)
 if can:      
     # Download the page
-    page = requests.get('https://electocracia.com/', 'lxml', headers=headers)
+    page = requests.get(url, 'lxml', headers=headers)
     # Parse the page with BeautifulSoup
     soup = BeautifulSoup(page.content)
     # We can see that our desired data is already in a table with id 'tablepress-2'
