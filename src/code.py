@@ -27,35 +27,25 @@ rp = urllib.robotparser.RobotFileParser()
 rp.set_url(url+'robots.txt')
 rp.read()
 can = rp.can_fetch("*", url)
-if can:
-      
+if can:      
     # Download the page
     page = requests.get('https://electocracia.com/', 'lxml', headers=headers)
-
     # Parse the page with BeautifulSoup
     soup = BeautifulSoup(page.content)
-
     # We can see that our desired data is already in a table with id 'tablepress-2'
     table = str(soup.findAll('table', attrs={"id" : "tablepress-2"}))
-
     # Fixes a problem with decimal points
     table1 = table.replace(",", ".")
-
     # Gets the table to a list of dataframes
     dfs = pd.read_html(table1, header = 0)
-
     # Gets an operable dataframe 
     df = dfs[0]
-
     # Fixes the names of some columns
     df.rename(columns = {df.columns[5] : 'PSOE', df.columns[6] : 'PP', df.columns[7] : 'Cs', df.columns[8] : 'UP', df.columns[9] : 'Vox'}, inplace = True)
-
     # Fixes a problem with the dates
     df["PUBLICACIÓN"] = pd.to_datetime(df["PUBLICACIÓN"], dayfirst = True)
     df["FIN CAMPO"] = pd.to_datetime(df["FIN CAMPO"], dayfirst = True)
-
     # Gets the final CSV file
     df.to_csv('polls.csv', index = False, encoding = 'utf-8')
-    
 else:
     print('The requested action is contrary to the robots.txt policy')
