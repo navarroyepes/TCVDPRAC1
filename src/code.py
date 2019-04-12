@@ -28,7 +28,7 @@ rp.set_url(url+'robots.txt')
 rp.read()
 can = rp.can_fetch("*", url)
 if can:
-  
+      
     # Download the page
     page = requests.get('https://electocracia.com/', 'lxml', headers=headers)
 
