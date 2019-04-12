@@ -41,5 +41,9 @@ df = dfs[0]
 # Fixes the names of some columns
 df.rename(columns = {df.columns[5] : 'PSOE', df.columns[6] : 'PP', df.columns[7] : 'Cs', df.columns[8] : 'UP', df.columns[9] : 'Vox'}, inplace = True)
 
+# Fixes a problem with the dates
+df["PUBLICACIÓN"] = pd.to_datetime(df["PUBLICACIÓN"], dayfirst = True)
+df["FIN CAMPO"] = pd.to_datetime(df["FIN CAMPO"], dayfirst = True)
+
 # Gets the final CSV file
 df.to_csv('polls.csv', index = False, encoding = 'utf-8')
