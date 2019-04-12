@@ -29,8 +29,11 @@ soup = BeautifulSoup(page.content)
 # We can see that our desired data is already in a table with id 'tablepress-2'
 table = str(soup.findAll('table', attrs={"id" : "tablepress-2"}))
 
+# Fixes a problem with decimal points
+table1 = table.replace(",", ".")
+
 # Gets the table to a list of dataframes
-dfs = pd.read_html(table, header = 0)
+dfs = pd.read_html(table1, header = 0)
 
 # Gets an operable dataframe 
 df = dfs[0]
