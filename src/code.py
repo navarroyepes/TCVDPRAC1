@@ -47,5 +47,4 @@ if can:
     df["FIN CAMPO"] = pd.to_datetime(df["FIN CAMPO"], dayfirst = True)
     # Gets the final CSV file
     df.to_csv('polls.csv', index = False, encoding = 'utf-8')
-else:
-    print('The requested action is contrary to the robots.txt policy')
+else: print('The requested action is contrary to the robots.txt policy')
