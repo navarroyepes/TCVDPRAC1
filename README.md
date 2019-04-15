@@ -11,7 +11,7 @@ La práctica 1 ha sido llevada a cabo por José Andrés Navarro Yepes y Andreu F
 * code/code.py
   Código en lenguaje Python que comprueba si podemos hacer web scraping de los datos de electocracia.com y en caso afirmativo transforma su histórico de sondeos en un archivo CSV
 
-* code/graf.ipynb
+* code/polls.ipynb
   Código que incluye el anterior en formato de Jupyter Notebook y que realiza un gráfico representativo del dataset
  
 # Recursos
